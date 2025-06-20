@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prosty Przepisy na Pyszne Dania</title>
+    <link rel="icon" type="image/png" href="logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
+    />
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: white;
+      }
+      .navbar {
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #dbdbdb;
+      }
+
+      .navbar-item {
+        color: #000 !important;
+        font-weight: 600;
+      }
+      .navbar-item:hover {
+        background-color: #dbdbdb;
+        color: #ffffff;
+      }
+
+      .navbar-item strong:hover {
+        animation: rotate-vertical 0.8s ease-in-out both;
+      }
+
+      @keyframes rotate-vertical {
+        from {
+          transform: rotateX(0deg);
+        }
+        to {
+          transform: rotateX(360deg);
+        }
+      }
+
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+
+      .title-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      header {
+        padding: 20px;
+        text-align: center;
+      }
+      header h1 {
+        color: #008000;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+      }
+      header p {
+        color: #555;
+        font-size: 1.2rem;
+      }
+      .popular-title {
+        text-align: center;
+        color: #ff6666;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+      }
+      .card {
+        width: 350px;
+        margin: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .card-image img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-content {
+        text-align: center;
+        background-color: white;
+        color: #000;
+        padding: 15px;
+        margin: 0;
+        border-top: 1px solid #ccc;
+      }
+      .card-content h3 {
+        color: #000;
+      }
+      .share-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 1200px;
+      }
+      .share-section img {
+        max-width: 40%;
+        border-radius: 10px;
+      }
+      .share-section .content {
+        max-width: 55%;
+      }
+      .share-section h2 {
+        color: #008000;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      .share-section p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 20px;
+      }
+      .share-section .button {
+        background-color: white;
+        color: #ff6666;
+        border: 1px solid #ff6666;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .share-section .button:hover {
+        background-color: #ff6666;
+        color: white;
+      }
+      .info-section {
+        padding: 40px 20px;
+        background-color: #fff;
+        color: #555;
+        text-align: left;
+        max-width: 1200px;
+        margin: 20px auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      .info-section h2 {
+        color: #008000;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+      .info-section p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        gap: 20px;
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="logo" href="index.html">
+            <img
+              src="logo2.png"
+              alt="CashFlowr"
+              style="height: 50px; margin-right: 15px"
+            />
+          </a>
+          <a class="navbar-item is-size-5" href="index.html">
+            <strong>Home<span class="has-text-success">Chef</span></strong>
+          </a>
+          <a class="navbar-item" href="przepisy.html">Przepisy</a>
+          <a class="navbar-item" href="form.html">Dodaj przepis</a>
+          <a class="navbar-item" href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <div class="title-container">
+        <h1>Proste przepisy na pyszne dania</h1>
+        <p>
+          Czytaj, gotuj, ciesz się. I nie zapomnij podzielić się swoimi
+          przepisami!
+        </p>
+      </div>
+    </header>
+
+    <h2 class="popular-title">Najpopularniejsze Dania</h2>
+
+    <div class="container">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="stronaglowna/carbonara.jpeg" alt="Spaghetti Carbonara" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="title is-4">Spaghetti Carbonara</h3>
+          <button
+            class="button is-success is-fullwidth"
+            onclick="window.location.href='recipe1.html'"
+          >
+            Gotuj
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="stronaglowna/borch.jpeg" alt="Barszcz" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="title is-4">Barszcz</h3>
+          <button
+            class="button is-success is-fullwidth"
+            onclick="window.location.href='recipe2.html'"
+          >
+            Gotuj
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="stronaglowna/pierogi.jpeg" alt="Pierogi" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="title is-4">Pierogi</h3>
+          <button
+            class="button is-success is-fullwidth"
+            onclick="window.location.href='recipe3.html'"
+          >
+            Gotuj
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="stronaglowna/beef stek.jpeg" alt="Stek" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="title is-4">Stek</h3>
+          <button
+            class="button is-success is-fullwidth"
+            onclick="window.location.href='recipe4.html'"
+          >
+            Gotuj
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="stronaglowna/cezar.jpeg" alt="Sałatka Cezar" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="title is-4">Sałatka Cezar</h3>
+          <button
+            class="button is-success is-fullwidth"
+            onclick="window.location.href='recipe6.html'"
+          >
+            Gotuj
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="stronaglowna/cake.jpeg" alt="Ciasto czekoladowe" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="title is-4">Ciasto czekoladowe</h3>
+          <button
+            class="button is-success is-fullwidth"
+            onclick="window.location.href='recipe5.html'"
+          >
+            Gotuj
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="share-section">
+      <img src="stronaglowna/kucharz.jpg" alt="Chef Cooking" />
+      <div class="content">
+        <h2>Podziel się pomysłami!</h2>
+        <p>
+          Wszystkie najlepsze przepisy w jednym katalogu! Dodaj swoje przepisy
+          na naszą stronę. Autorzy najpopularniejszych przepisów każdego
+          miesiąca otrzymują nagrody. Udostępniaj swoje ulubione dania i
+          zdobywaj wiele polubień oraz ocen!
+        </p>
+        <button class="button" onclick="window.location.href='form.html'">
+          Dodaj swój przepis
+        </button>
+      </div>
+    </div>
+    <div class="info-section">
+      <h2>Fajne przepisy – strona z przepisami po polsku</h2>
+      <p>
+        Wiele lat temu nasze mamy i babcie dzieliły się przepisami, przepisując
+        je ręcznie. Przekazywały sobie grube zeszyty z notatkami, aby nie zgubić
+        starego prostego przepisu na duszoną kapustę z fasolą, sałatkę z
+        tuńczykiem i ryżem przypominającą „mimozę” czy chrupiącego „napoleona”.
+      </p>
+      <p>
+        Teraz w modzie są inne proste przepisy, nowoczesne dania – sałatki z
+        ananasem i kiwi, serniki z bananem, kuskus z warzywami. Nawet krojenie i
+        przygotowanie składników wygląda dziś inaczej. Wymyślamy więc nowe
+        proste przepisy, aby było smacznie, nowocześnie i wyjątkowo.
+      </p>
+      <h3>Co ugotować na śniadanie, obiad czy kolację?</h3>
+      <p>
+        Jeśli lubisz gotować, Twoja rodzina na pewno ma ulubione danie, które
+        smakuje każdemu. Podziel się swoim przepisem, aby nasi czytelnicy mogli
+        przygotować go i urozmaicić nim swój stół. Bez względu na to, czy jest
+        to prosty sałatka z paluszkami krabowymi, wyjątkowy bogracz czy
+        wykwintny banosz.
+      </p>
+      <p>
+        Każda gospodyni może założyć na naszej stronie własny profil, aby nie
+        tylko publikować swoje przepisy, ale także otrzymywać zamówienia na
+        przygotowanie własnych dań – wykwintnych deserów, oryginalnych tortów.
+      </p>
+      <p>
+        Przesyłajcie swoje pyszne przepisy, zarówno te najprostsze – sałatka z
+        burakami, ziemniaki po wiejsku, owsianka z owocami, jak i trudniejsze –
+        morszczuk po galicyjsku, czanaki. Zaprezentuj je pięknie i smakowicie,
+        Twoje danie na pewno zostanie zauważone! Im więcej polubień i
+        5-gwiazdkowych ocen zdobędziesz, tym większa szansa na nagrodę.
+      </p>
+    </div>
+    <footer>
+      <span>HomeChef - everyone can cook. All rights reserved.</span>
+      <a href="#privacy-policy">Privacy Policy</a>
+    </footer>
+  </body>
+</html>

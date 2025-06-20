@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Step</title>
+    <link rel="icon" type="image/png" href="logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
+    />
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: white;
+        color: #000;
+      }
+      #step-text strong {
+        color: #000;
+      }
+      .navbar {
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #dbdbdb;
+      }
+
+      .navbar-item {
+        color: #000 !important;
+        font-weight: 600;
+      }
+      .navbar-item:hover {
+        background-color: #dbdbdb;
+        color: #ffffff;
+      }
+
+      .navbar-item strong:hover {
+        animation: rotate-vertical 0.8s ease-in-out both;
+      }
+
+      @keyframes rotate-vertical {
+        from {
+          transform: rotateX(0deg);
+        }
+        to {
+          transform: rotateX(360deg);
+        }
+      }
+
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+      .recipe-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center;
+      }
+      .ingredients {
+        position: fixed;
+        top: 60px;
+        right: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        width: 200px;
+        z-index: 99;
+      }
+      .ingredients h3 {
+        margin-top: 0;
+      }
+      .nav-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .button {
+        background-color: hsl(141, 71%, 48%);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0 10px;
+        border-radius: 5px;
+      }
+      .button:hover {
+        background-color: hsl(103, 71%, 48%);
+      }
+      .comments {
+        text-align: center;
+        margin-top: 40px;
+        width: 80%;
+        max-width: 800px;
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+      }
+      .comments textarea {
+        width: calc(100% - 40px);
+        height: 100px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+      }
+      .comments button {
+        background-color: hsl(141, 71%, 48%);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      .comments button:hover {
+        background-color: hsl(103, 71%, 48%);
+      }
+      .comment {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .comment h4 {
+        margin: 0;
+      }
+      .comment p {
+        margin: 5px 0 0;
+      }
+      .rating {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .rating span {
+        font-size: 30px;
+        cursor: pointer;
+        color: #ccc;
+        margin: 0 5px;
+      }
+      .rating span:hover,
+      .rating span.active {
+        color: gold;
+      }
+      .step-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 50px;
+        max-width: 1050px;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+      }
+      .step-card:hover {
+        transform: scale(1.05);
+      }
+      .step-card img {
+        max-width: 95%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .step-card p {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        gap: 20px;
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="logo" href="index.html">
+            <img
+              src="logo2.png"
+              alt="CashFlowr"
+              style="height: 50px; margin-right: 15px"
+            />
+          </a>
+          <a class="navbar-item is-size-5" href="index.html">
+            <strong>Home<span class="has-text-success">Chef</span></strong>
+          </a>
+          <a class="navbar-item" href="przepisy.html">Przepisy</a>
+          <a class="navbar-item" href="form.html">Dodaj przepis</a>
+          <a class="navbar-item" href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+    <div class="recipe-title">Pierogi Przepis</div>
+    <div class="ingredients" id="ingredients">
+      <h3 id="ingredients-title">Krok 1 Składniki</h3>
+      <ul></ul>
+    </div>
+    <div class="content" id="step-content">
+      <div class="step-card">
+        <img
+          id="step-placeholder"
+          src="placeholder.jpg"
+          alt="Step image placeholder"
+        />
+        <p id="step-text"></p>
+      </div>
+      <div class="nav-buttons">
+        <button class="button" id="prev-btn" onclick="goToPrevious()" disabled>
+          &larr; Poprzedni
+        </button>
+        <button class="button" id="next-btn" onclick="goToNext()">
+          Następny &rarr;
+        </button>
+      </div>
+    </div>
+    <div class="comments" id="comments-section" style="display: none">
+      <div class="comment">
+        <h3>Komentarze</h3>
+      </div>
+      <div class="comment">
+        <h4>Jan Kowalski</h4>
+        <p>
+          "Ciasto wyszło idealne, bardzo elastyczne. Moja babcia mówi, że to
+          najlepszy przepis, jaki widziała!"
+        </p>
+        <div class="rating">Ocena: ★★★★★</div>
+      </div>
+      <div class="comment">
+        <h4>Maria Wiśniewska</h4>
+        <p>
+          "Dodałam trochę mniej wody do ciasta, żeby było bardziej zwarte.
+          Polecam też smażone pierogi!"
+        </p>
+        <div class="rating">Ocena: ★★★★☆</div>
+      </div>
+      <div class="comment">
+        <h4>Kasia Kaczmarek</h4>
+        <p>
+          "Pierogi zrobiłam z farszem mięsnym według tego przepisu i wyszły
+          genialnie!"
+        </p>
+        <div class="rating">Ocena: ★★★★★</div>
+      </div>
+      <h3>Zostaw ocenę</h3>
+      <div class="rating" id="rating-stars">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+      </div>
+      <textarea placeholder="Napisz swój komentarz..."></textarea>
+      <button>Prześlij</button>
+    </div>
+    <footer>
+      <span>HomeChef - everyone can cook. All rights reserved.</span>
+      <a href="#privacy-policy">Privacy Policy</a>
+    </footer>
+    <script>
+      const steps = [
+        {
+          text: "<strong>Step 0:</strong> Przygotuj wszystkie składniki.",
+          ingredients: [
+            "500 g mąki",
+            "1 jajko",
+            "250 ml ciepłej wody",
+            "szczypta soli",
+            "500 g ugotowanych ziemniaków",
+            "250 g białego sera",
+            "1 cebula",
+            "sól",
+            "pieprz",
+            "śmietana",
+          ],
+          image: "Pierogi/do.png",
+        },
+        {
+          text: "<strong>Step 1:</strong> Wymieszaj mąkę z solą, dodaj jajko i stopniowo dolewaj ciepłą wodę, wyrabiając elastyczne ciasto. Odstaw na 30 minut.",
+          ingredients: [
+            "500 g mąki",
+            "1 jajko",
+            "250 ml ciepłej wody",
+            "szczypta soli",
+          ],
+          image: "Pierogi/dought.jpg",
+        },
+        {
+          text: "<strong>Step 2:</strong> Ugnieć ziemniaki i ser, podsmaż drobno posiekaną cebulę, połącz z resztą składników i dopraw.",
+          ingredients: [
+            "500 g ugotowanych ziemniaków",
+            "250 g białego sera",
+            "1 cebula",
+            "sól",
+            "pieprz",
+          ],
+          image: "Pierogi/potato.jpg",
+        },
+        {
+          text: "<strong>Step 3:</strong> Rozwałkuj ciasto na cienki placek, wytnij kółka szklanką, nałóż farsz i zlep brzegi.",
+          ingredients: [
+            "Przygotowane ciasto",
+            "farsz (ziemniaki, ser, cebula)",
+          ],
+          image: "Pierogi/piece.jpg",
+        },
+        {
+          text: "<strong>Step 4:</strong> Wrzuć pierogi do osolonego wrzątku i gotuj do momentu wypłynięcia na powierzchnię (ok. 3-5 minut).",
+          ingredients: ["Woda", "sól"],
+          image: "Pierogi/boil.png",
+        },
+        {
+          text: "<strong>Step 5:</strong> Podawaj na gorąco z podsmażoną cebulką lub śmietaną. Smacznego!",
+          ingredients: ["Podsmażona cebulka", "śmietana"],
+          image: "Pierogi/final_pierogi.png",
+        },
+      ];
+
+      let currentStep = 0;
+
+      function updateStep() {
+        const step = steps[currentStep];
+        document.getElementById("step-text").innerHTML = step.text;
+        document.getElementById("ingredients").style.display =
+          currentStep === steps.length - 1 ? "none" : "block";
+        document.getElementById("step-placeholder").src = step.image;
+
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+
+        if (currentStep === 0) {
+          prevBtn.style.visibility = "hidden";
+          prevBtn.disabled = true;
+        } else {
+          prevBtn.style.visibility = "visible";
+          prevBtn.disabled = false;
+        }
+
+        if (currentStep === steps.length - 1) {
+          nextBtn.style.visibility = "hidden";
+        } else {
+          nextBtn.style.visibility = "visible";
+        }
+
+        const ingredientsList = document
+          .getElementById("ingredients")
+          .querySelector("ul");
+        ingredientsList.innerHTML = step.ingredients
+          .map((item) => `<li>${item}</li>`)
+          .join("");
+
+        const ingredientsTitle = document.getElementById("ingredients-title");
+        ingredientsTitle.textContent =
+          currentStep === 0 ? "Składniki" : `Step ${currentStep} Składniki`;
+
+        const commentsSection = document.getElementById("comments-section");
+        commentsSection.style.display =
+          currentStep === steps.length - 1 ? "block" : "none";
+      }
+
+      function goToPrevious() {
+        if (currentStep > 0) {
+          currentStep--;
+          updateStep();
+        }
+      }
+
+      function goToNext() {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          updateStep();
+        }
+      }
+
+      updateStep();
+
+      const ratingStars = document.querySelectorAll("#rating-stars span");
+
+      ratingStars.forEach((star) => {
+        star.addEventListener("click", () => {
+          const rating = parseInt(star.dataset.value);
+          highlightStars(rating);
+        });
+      });
+
+      function highlightStars(rating) {
+        ratingStars.forEach((star) => {
+          if (parseInt(star.dataset.value) <= rating) {
+            star.classList.add("active");
+          } else {
+            star.classList.remove("active");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dodaj Przepis</title>
+    <link rel="icon" type="image/png" href="logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
+    />
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: white;
+        color: #000;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      label {
+        color: #000 !important;
+      }
+      #general-ingredient-list li {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #general-ingredients-container {
+        width: 100%;
+        max-width: 300px; 
+        padding: 10px; 
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      #general-ingredient-list li button {
+        margin-left: 10px; 
+        padding: 5px 10px; 
+        border: none;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+      }
+      .navbar {
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #dbdbdb;
+      }
+
+      .navbar-item {
+        color: #000 !important;
+        font-weight: 600;
+      }
+      .navbar-item:hover {
+        background-color: #dbdbdb;
+        color: #ffffff;
+      }
+
+      .navbar-item strong:hover {
+        animation: rotate-vertical 0.8s ease-in-out both;
+      }
+
+      @keyframes rotate-vertical {
+        from {
+          transform: rotateX(0deg);
+        }
+        to {
+          transform: rotateX(360deg);
+        }
+      }
+
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .step .btn-usun-step {
+        background-color: red;
+      }
+      .step .btn-usun-step:hover {
+        background-color: darkred;
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+      }
+      .form-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1800px;
+        gap: 30px;
+      }
+      .form-main {
+        flex: 3;
+        background: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        padding: 25px 30px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-main h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+
+      .form-main label {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: block;
+        color: #555;
+      }
+
+      .form-main input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #333;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-main input[type="text"]:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        outline: none;
+      }
+      ul li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      ul li button {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+      }
+
+      ul li button:hover {
+        background-color: darkred;
+      }
+
+      .step ul {
+        padding-left: 15px;
+      }
+      .step div {
+        padding: 10px;
+      }
+
+    .functionality{
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto 15px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+      .form-main input,
+      .form-main textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .form-main textarea {
+        height: 200px;
+      }
+      .form-main button {
+        background-color: hsl(141, 71%, 48%);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 15px;
+        border-radius: 5px;
+      }
+      .form-main button:hover {
+        background-color: hsl(103, 71%, 48%);
+      }
+      .btn-dodaj {
+        background-color: hsl(217, 71%, 53%);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 3px;
+      }
+      .btn-dodaj:hover {
+        background-color: hsl(217, 61%, 43%);
+      }
+      .btn-upload {
+        background-color: hsl(48, 100%, 67%);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+      .btn-upload:hover {
+        background-color: hsl(48, 90%, 57%);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="logo" href="index.html">
+            <img
+              src="logo2.png"
+              alt="CashFlowr"
+              style="height: 50px; margin-right: 15px"
+            />
+          </a>
+          <a class="navbar-item is-size-5" href="index.html">
+            <strong>Home<span class="has-text-success">Chef</span></strong>
+          </a>
+          <a class="navbar-item" href="przepisy.html">Przepisy</a>
+          <a class="navbar-item" href="form.html">Dodaj przepis</a>
+          <a class="navbar-item" href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+    <div class="content">
+      <div class="form-container">
+        <div class="form-main">
+          <h2>Dodaj Nowy Przepis</h2>
+          <label>Nazwa Przepisu</label>
+          <input
+            type="text"
+            id="recipe-name"
+            placeholder="Wprowadź nazwę przepisu"
+          />
+          <div id="steps">
+            <div
+              class="step"
+              style="display: flex; gap: 20px; align-items: flex-start"
+            >
+              <div style="flex: 1; text-align: left"></div>
+              <textarea
+                style="flex: 2"
+                placeholder="Opisz przygotowanie do gotowania"
+              ></textarea>
+              <div style="flex: 1; text-align: center">
+                <img
+                  data-step="0"
+                  src="placeholder.jpg"
+                  alt="Zdjęcie"
+                  style="
+                    max-width: 100%;
+                    border-radius: 5px;
+                    margin-bottom: 10px;
+                  "
+                />
+                <input
+                  type="file"
+                  data-step="0"
+                  accept="image/*"
+                  onchange="previewImage(event, this)"
+                />
+              </div>
+            </div>
+          </div>
+          <button class="functionality" onclick="addStep()">Dodaj Krok</button>
+          <button class="functionality">Opublikuj Przepis</button>
+        </div>
+        <div class="ingredients-container" id="general-ingredients-container">
+          <h3>Ogólne Składniki</h3>
+          <div>
+            <input
+              type="text"
+              id="general-ingredient"
+              placeholder="Dodaj składnik"
+            />
+            <button class="btn-dodaj" onclick="addGeneralIngredient()">
+              Dodaj
+            </button>
+          </div>
+          <ul id="general-ingredient-list"></ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      let stepCounter = 1;
+
+      function addGeneralIngredient() {
+        const input = document.getElementById("general-ingredient");
+        const list = document.getElementById("general-ingredient-list");
+        if (input.value.trim() !== "") {
+          const li = document.createElement("li");
+          li.innerHTML = `${input.value} <button class="btn-usun" onclick="this.parentElement.remove()">Usuń</button>`;
+          list.appendChild(li);
+          input.value = "";
+        }
+      }
+
+      function addStep() {
+        const steps = document.getElementById("steps");
+
+        const stepDiv = document.createElement("div");
+        stepDiv.classList.add("step");
+        stepDiv.style.display = "flex";
+        stepDiv.style.gap = "20px";
+        stepDiv.style.alignItems = "flex-start";
+        stepDiv.innerHTML = `
+    <div style="flex: 1; text-align: left;">
+      <h4>Składniki dla kroku ${stepCounter}</h4>
+      <div>
+        <input type="text" placeholder="Dodaj składnik">
+        <button class="btn-dodaj" onclick="addStepIngredient(this)">Dodaj</button>
+      </div>
+      <ul></ul>
+    </div>
+    <textarea style="flex: 2;" placeholder="Krok ${stepCounter}: Opisz ten krok"></textarea>
+    <div style="flex: 1; text-align: center;">
+      <img data-step="${stepCounter}" src="placeholder.jpg" alt="Zdjęcie" style="max-width: 100%; border-radius: 5px; margin-bottom: 10px;">
+      <input type="file" data-step="${stepCounter}" accept="image/*" onchange="previewImage(event, this)">
+    </div>
+  `;
+        steps.appendChild(stepDiv);
+        stepCounter++;
+      }
+
+      function addStepIngredient(button) {
+        const input = button.previousElementSibling;
+        const list = button.parentElement.nextElementSibling;
+        if (input.value.trim() !== "") {
+          const li = document.createElement("li");
+          li.innerHTML = `${input.value} <button class="btn-usun-step" onclick="this.parentElement.remove()">Usuń</button>`;
+          list.appendChild(li);
+          input.value = "";
+        }
+      }
+
+      function previewImage(event, inputElement) {
+        const step = inputElement.getAttribute("data-step");
+        const reader = new FileReader();
+        reader.onload = function () {
+          const preview = document.querySelector(`img[data-step="${step}"]`);
+          if (preview) {
+            preview.src = reader.result;
+          }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontakt</title>
+    <link rel="icon" type="image/png" href="logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: white;
+      }
+      .navbar {
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #dbdbdb;
+      }
+
+      .navbar-item {
+        color: #000 !important;
+        font-weight: 600;
+      }
+      .navbar-item:hover {
+        background-color: #dbdbdb;
+        color: #ffffff;
+      }
+
+      .navbar-item strong:hover {
+        animation: rotate-vertical 0.8s ease-in-out both;
+      }
+
+      @keyframes rotate-vertical {
+        from {
+          transform: rotateX(0deg);
+        }
+        to {
+          transform: rotateX(360deg);
+        }
+      }
+
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+      .field {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .input,
+      .textarea {
+        background-color: #f3f4f6 !important;
+      }
+
+      select {
+        background-color: #f3f4f6 !important;
+        color: black !important;
+      }
+
+      .contact-info {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .contact-info h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #008080;
+      }
+      .contact-info p {
+        margin-bottom: 15px;
+        line-height: 1.8;
+      }
+      .contact-info a {
+        color: #ff6666;
+        text-decoration: none;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        gap: 20px;
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="logo" href="index.html">
+            <img
+              src="logo2.png"
+              alt="CashFlowr"
+              style="height: 50px; margin-right: 15px"
+            />
+          </a>
+          <a class="navbar-item is-size-5" href="index.html">
+            <strong>Home<span class="has-text-success">Chef</span></strong>
+          </a>
+          <a class="navbar-item" href="przepisy.html">Przepisy</a>
+          <a class="navbar-item" href="form.html">Dodaj przepis</a>
+          <a class="navbar-item" href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="field">
+      <label class="label has-text-black">Imię</label>
+      <div class="control">
+        <input
+          class="input is-medium has-text-black"
+          type="text"
+          placeholder="Text input"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label has-text-black">Nazwisko</label>
+      <div class="control">
+        <input
+          class="input is-medium has-text-black"
+          type="text"
+          placeholder="Text input"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label has-text-black">Email</label>
+      <div class="control">
+        <input
+          class="input is-danger has-text-black"
+          type="email"
+          placeholder="Email input"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label has-text-black">Twoja wiadomość</label>
+      <div class="control">
+        <textarea
+          class="textarea has-text-black"
+          placeholder="Textarea"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" />
+          I agree to the <a href="">terms and conditions</a>
+        </label>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-light">Cancel</button>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <h3>Nasze Kontakty</h3>
+
+      <p>
+        Email redakcji:
+        <a href="mailto:kontakt@homechef.com">kontakt@homechef.com</a>
+      </p>
+      <p>Telefon: 123-888-999</p>
+
+      <h3>Social Media</h3>
+      <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+      <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+      <p><a href="https://twitter.com" target="_blank">Twitter</a></p>
+
+      <h3>Ważne Informacje</h3>
+      <p>
+        Regulamin:
+        <a href="https://przepisy.com/regulamin" target="_blank"
+          >przepisy.com/regulamin</a
+        >
+      </p>
+      <p>
+        Polityka prywatności:
+        <a href="https://przepisy.com/polityka" target="_blank"
+          >przepisy.com/polityka</a
+        >
+      </p>
+    </div>
+
+    <footer>
+      <span>HomeChef - everyone can cook. All rights reserved.</span>
+      <a href="#privacy-policy">Privacy Policy</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kategorie Przepisów</title>
+    <link rel="icon" type="image/png" href="logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #dbdbdb;
+      }
+
+      .navbar-item {
+        color: #000 !important;
+        font-weight: 600;
+      }
+      .navbar-item:hover {
+        background-color: #dbdbdb;
+        color: #ffffff;
+      }
+
+      .navbar-item strong:hover {
+        animation: rotate-vertical 0.8s ease-in-out both;
+      }
+
+      @keyframes rotate-vertical {
+        from {
+          transform: rotateX(0deg);
+        }
+        to {
+          transform: rotateX(360deg);
+        }
+      }
+
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .navbar-item:focus,
+      .navbar-item:active {
+        background-color: transparent !important;
+        color: #008000 !important;
+        box-shadow: none !important;
+      }
+
+      .category-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .category-header .title {
+        color: #ff6666;
+        margin-bottom: 10px;
+      }
+
+      .category-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .category-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+      }
+      .category-buttons a {
+        border: 1px solid #ff6666;
+        border-radius: 20px;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #ff6666;
+        font-size: 14px;
+      }
+      .category-buttons a:hover {
+        background-color: #ff6666;
+        color: white;
+      }
+      .category-section {
+        padding: 40px 20px;
+      }
+      .category-section h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #008000;
+        margin-bottom: 20px;
+      }
+      .category-section h2::after {
+        content: "";
+        display: block;
+        width: 70%;
+        height: 2px;
+        background-color: #008000;
+        margin: 10px auto 0;
+      }
+      .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .card {
+        width: 350px;
+        margin: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .card img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-content {
+        text-align: center;
+        background-color: white;
+        color: #000;
+        padding: 15px;
+        margin: 0;
+        border-top: 1px solid #ccc;
+      }
+      .card-content h3 {
+        color: #000;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        gap: 20px;
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="logo" href="index.html">
+            <img
+              src="logo2.png"
+              alt="CashFlowr"
+              style="height: 50px; margin-right: 15px"
+            />
+          </a>
+          <a class="navbar-item is-size-5" href="index.html">
+            <strong>Home<span class="has-text-success">Chef</span></strong>
+          </a>
+          <a class="navbar-item" href="przepisy.html">Przepisy</a>
+          <a class="navbar-item" href="form.html">Dodaj przepis</a>
+          <a class="navbar-item" href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+    <div class="category-header">
+      <h3 class="title is-4">Kategorie</h3>
+      <div class="category-buttons">
+        <a href="#sniadania">Śniadania</a>
+        <a href="#dania-glowne">Dania główne</a>
+        <a href="#cukiernie">Cukiernie</a>
+        <a href="#pozyteczny">Pożyteczny</a>
+      </div>
+    </div>
+
+    <div id="sniadania" class="category-section">
+      <h2>Śniadania</h2>
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="przepisy/sniadania/tostyawokado.jpeg"
+                alt="Breakfast1"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Tosty z Awokado</h3>
+            <p>Idealne na zdrowy początek dnia!</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/sniadania/owsianka.jpg" alt="Breakfast2" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Owsianka z Owocami</h3>
+            <p>Pożywne i pełne smaku.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/sniadania/jajecznica.jpeg" alt="Breakfast3" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Jajecznica z Warzywami</h3>
+            <p>Proste i zdrowe śniadanie.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/sniadania/nalesniki.jpg" alt="Breakfast4" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Naleśniki z Dżemem</h3>
+            <p>Klasyczne i smaczne.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dania-glowne" class="category-section">
+      <h2>Dania główne</h2>
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="stronaglowna/carbonara.jpeg" alt="MainDish1" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Spaghetti Carbonara</h3>
+            <p>Prosty i szybki do zrobienia.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='recipe1.html'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="stronaglowna/borch.jpeg" alt="MainDish2" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Barszcz</h3>
+            <p>Tradycyjny przepis na każdą okazję.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='recipe2.html'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="stronaglowna/pierogi.jpeg" alt="MainDish3" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Pierogi</h3>
+            <p>Klasyczne i wspaniałe w smaku.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='recipe3.html'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="stronaglowna/beef stek.jpeg" alt="MainDish4" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Stek</h3>
+            <p>Wykwintne danie dla miłośników mięsa.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='recipe4.html'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cukiernie" class="category-section">
+      <h2>Cukiernie</h2>
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="stronaglowna/cake.jpeg" alt="Dessert1" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Ciasto czekoladowe</h3>
+            <p>Idealne na każdą okazję.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='recipe5.html'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/cukiernie/keks.jpeg" alt="Dessert2" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Babeczki Waniliowe</h3>
+            <p>Rozkosz dla podniebienia.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/cukiernie/serniknach.jpeg" alt="Dessert3" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Sernik na Zimno</h3>
+            <p>Lekki i orzeźwiający deser.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/cukiernie/szarlotka.jpeg" alt="Dessert4" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Szarlotka z Cynamonem</h3>
+            <p>Aromatyczny i pyszny wypiek.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pozyteczny" class="category-section">
+      <h2>Pożyteczny</h2>
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="stronaglowna/cezar.jpeg" alt="HealthyDish1" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Sałatka Cezar</h3>
+            <p>Proste i pełne smaku.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='recipe6.html'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="przepisy/pozyteczny/salatkagrecka.jpeg"
+                alt="HealthyDish2"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Sałatka Grecka</h3>
+            <p>Świeża i pełna witamin.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="przepisy/pozyteczny/zupa warzywna.jpeg"
+                alt="HealthyDish3"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Zupa Warzywna</h3>
+            <p>Ciepła i pożywna.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="przepisy/pozyteczny/kaszotto.jpg" alt="HealthyDish4" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <h3 class="title is-4">Kaszotto z Warzywami</h3>
+            <p>Zdrowe i sycące danie.</p>
+            <button
+              class="button is-success is-fullwidth"
+              onclick="window.location.href='#'"
+            >
+              Gotuj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>HomeChef - everyone can cook. All rights reserved.</span>
+      <a href="#privacy-policy">Privacy Policy</a>
+    </footer>
+  </body>
+</html>
