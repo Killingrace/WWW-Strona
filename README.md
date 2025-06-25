@@ -17,8 +17,8 @@ If you are the owner of any of the images included and would like them to be pro
 
 ## 👥 Group Collaboration
 
-This file was created as part of a group project.  
-All team members contributed to the development, structure, and visual content of the page.  
+This file was created as part of a group project involving two participants.
+Both team members contributed to the development, structure, and visual content of the page.
 The collaboration aimed to practice teamwork and apply web development skills in a shared environment.
 
 ## 📚 Purpose
